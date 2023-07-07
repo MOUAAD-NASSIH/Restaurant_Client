@@ -7,18 +7,10 @@ import { storeToRefs } from "pinia";
 
 const store = useStore();
 const { admin } = storeToRefs(store);
-const { getFoodsData, setUser } = store;
-
-import AxiosInstance from "./axios";
-const getUserInfo = async () => {
-  const currentUser = await AxiosInstance.get("users/current");
-  console.log(currentUser);
-  // setUser(currentUser);
-};
+const { getFoodsData } = store;
 
 onMounted(() => {
   getFoodsData();
-  // getUserInfo();
 });
 </script>
 

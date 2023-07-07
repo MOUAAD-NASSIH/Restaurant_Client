@@ -71,7 +71,7 @@ function scrollToTop() {
         <h3>extra links</h3>
         <div v-if="user">
           <router-link @click="scrollToTop()" to="/cart">
-            <i class="fas fa-arrow-right"></i> my order
+            <i class="fas fa-arrow-right"></i> my cart
           </router-link>
           <router-link @click="scrollToTop()" to="/myorder">
             <i class="fas fa-arrow-right"></i> my orders
@@ -103,21 +103,6 @@ function scrollToTop() {
     </div>
   </div>
 </template>
-
-<!-- <script>
-import { mapState } from "vuex";
-export default {
-  name: "FooterComponent",
-  computed: {
-    ...mapState(["user"]),
-  },
-  methods: {
-    scrollToTop() {
-      window.scrollTo(0, 0);
-    },
-  },
-};
-</script> -->
 
 <style scoped>
 /* footer */

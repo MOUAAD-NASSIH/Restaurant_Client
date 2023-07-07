@@ -66,13 +66,13 @@ function checkForm() {
   if (!orderObj.value.phone) {
     errorObj.value.phoneErr.push("Entering phone number is required");
   } else {
-    if (!orderObj.value.phone.startsWith("+212")) {
+    if (!/^0[567]/.test(orderObj.value.phone)) {
       errorObj.value.phoneErr.push(
-        "Phone numbers must start with +212 example +212-xxxxxxxxx"
+        "Phone numbers must start with 05, 06, or 07"
       );
     }
-    if (!/[0-9]{10}/.test(orderObj.value.phone)) {
-      errorObj.value.phoneErr.push("Phone numbers can only contain numbers");
+    if (orderObj.value.phone.length != 10) {
+      errorObj.value.phoneErr.push("Phone numbers must have exactly 10 digits");
     }
   }
   if (!orderObj.value.people) {
@@ -109,7 +109,7 @@ function checkForm() {
     }
   }
   if (orderObj.value.card) {
-    if (!/[0-9]{10}/.test(orderObj.value.card)) {
+    if (!/[0-9]/.test(orderObj.value.card)) {
       errorObj.value.cardErr.push("Card numbers can only contain numbers");
     }
 
@@ -134,11 +134,6 @@ function checkForm() {
     ) {
       errorObj.value.whenErr.push(
         "Available reservation range is from now to next two months"
-      );
-    }
-    if (dateInput.getHours() < 7 || dateInput.getHours() > 22) {
-      errorObj.value.whenErr.push(
-        "Store open from 7:00 AM to 10:00 PM everyday"
       );
     }
   }
@@ -287,203 +282,6 @@ async function handleSubmit(e) {
     </form>
   </section>
 </template>
-
-<!-- <script>
-import axios from "axios";
-export default {
-  name: "Table",
-
-  data() {
-    return {
-      orderObj: {
-        name: "",
-        phone: "",
-        people: "",
-        tables: "",
-        card: "",
-        when: "",
-        note: "",
-      },
-      errorObj: {
-        nameErr: [],
-        phoneErr: [],
-        peopleErr: [],
-        tablesErr: [],
-        cardErr: [],
-        whenErr: [],
-      },
-    };
-  },
-
-  methods: {
-    availableTime: function () {
-      var now = new Date();
-      var day = ("0" + now.getDate()).slice(-2);
-      var currentMonth = ("0" + (now.getMonth() + 1)).slice(-2);
-      var maxMonth = ("0" + (now.getMonth() + 3)).slice(-2);
-      var hour = ("0" + now.getHours()).slice(-2);
-      var min = ("0" + now.getMinutes()).slice(-2);
-      var minRange =
-        now.getFullYear() +
-        "-" +
-        currentMonth +
-        "-" +
-        day +
-        "T" +
-        hour +
-        ":" +
-        min;
-      var maxRange =
-        now.getFullYear() + "-" + maxMonth + "-" + day + "T" + hour + ":" + min;
-
-      document.getElementById("oWhen").setAttribute("min", minRange);
-      document.getElementById("oWhen").setAttribute("max", maxRange);
-    },
-
-    resetCheckErr: function () {
-      this.errorObj.nameErr = [];
-      this.errorObj.phoneErr = [];
-      this.errorObj.peopleErr = [];
-      this.errorObj.tablesErr = [];
-      this.errorObj.cardErr = [];
-      this.errorObj.whenErr = [];
-    },
-
-    checkEmptyErr: function () {
-      for (var typeErr in this.errorObj) {
-        if (this.errorObj[typeErr].length != 0) {
-          return false;
-        }
-      }
-      return true;
-    },
-
-    checkForm: function () {
-      this.resetCheckErr();
-      // Name validate
-      if (!this.orderObj.name) {
-        this.errorObj.nameErr.push("Entering a name is required");
-      } else {
-        if (!/^[A-Za-z]+$/.test(this.orderObj.name.replace(/\s/g, ""))) {
-          this.errorObj.nameErr.push("A name can only contain letters");
-        }
-      }
-      // Phone validate
-      if (!this.orderObj.phone) {
-        this.errorObj.phoneErr.push("Entering phone number is required");
-      } else {
-        if (!this.orderObj.phone.startsWith("84")) {
-          this.errorObj.phoneErr.push("Phone numbers must start with 84");
-        }
-        if (!/[0-9]{10}/.test(this.orderObj.phone)) {
-          this.errorObj.phoneErr.push("Phone numbers can only contain numbers");
-        }
-        if (this.orderObj.phone.length != 11) {
-          this.errorObj.phoneErr.push(
-            "Phone numbers must have exactly 11 digits"
-          );
-        }
-      }
-      if (!this.orderObj.people) {
-        this.errorObj.peopleErr.push("Entering number of people is required");
-      } else {
-        if (parseInt(this.orderObj.people) > 100) {
-          this.errorObj.peopleErr.push(
-            "Each store can only serve 100 people at a time"
-          );
-        }
-        if (parseInt(this.orderObj.people) < 1) {
-          this.errorObj.peopleErr.push(
-            "Number of people must be greater than or equal to 1"
-          );
-        }
-      }
-      if (!this.orderObj.tables) {
-        this.errorObj.tablesErr.push("Entering number of tables is required");
-      } else {
-        if (parseInt(this.orderObj.tables) > 50) {
-          this.errorObj.tablesErr.push(
-            "Each store can only have maximum 50 tables"
-          );
-        }
-        if (parseInt(this.orderObj.tables) < 1) {
-          this.errorObj.tablesErr.push(
-            "Number of tables must be greater than or equal to 1"
-          );
-        }
-        if (parseInt(this.orderObj.people) < parseInt(this.orderObj.tables)) {
-          this.errorObj.tablesErr.push(
-            "The number of tables must be less than the number of people"
-          );
-        }
-      }
-      if (this.orderObj.card) {
-        if (!/[0-9]{10}/.test(this.orderObj.card)) {
-          this.errorObj.cardErr.push("Card numbers can only contain numbers");
-        }
-
-        if (this.orderObj.card.length != 10) {
-          this.errorObj.cardErr.push("Card number must have exactly 10 digits");
-        }
-      }
-      if (!this.orderObj.when) {
-        this.errorObj.whenErr.push("Entering when to serve is required");
-      } else {
-        let minRange = document.getElementById("oWhen").getAttribute("min");
-        let maxRange = document.getElementById("oWhen").getAttribute("max");
-        let dateMin = new Date(minRange);
-        let dateMax = new Date(maxRange);
-        let dateInput = new Date(this.orderObj.when);
-        if (dateInput === "Invalid Date") {
-          this.errorObj.whenErr.push("Invalid date input");
-        }
-        if (
-          dateInput.getTime() < dateMin.getTime() ||
-          dateInput.getTime() > dateMax.getTime()
-        ) {
-          this.errorObj.whenErr.push(
-            "Available reservation range is from now to next two months"
-          );
-        }
-        if (dateInput.getHours() < 7 || dateInput.getHours() > 22) {
-          this.errorObj.whenErr.push(
-            "Store open from 7:00 AM to 10:00 PM everyday"
-          );
-        }
-      }
-    },
-
-    async handleSubmit(e) {
-      this.checkForm();
-      if (!this.checkEmptyErr()) {
-        e.preventDefault();
-      } else {
-        e.preventDefault();
-        let data = {
-          book_name: this.orderObj.name,
-          book_phone: parseInt(this.orderObj.phone),
-          book_people: parseInt(this.orderObj.people),
-          book_tables: parseInt(this.orderObj.tables),
-          user_id: parseInt(this.orderObj.card),
-          book_when: this.orderObj.when,
-          book_note: this.orderObj.note,
-        };
-        await axios.post("/booking", data);
-        this.$refs.alert.showAlert(
-          "success",
-          "Thank you! We will call you soon to confirm your order",
-          "Booking Successfully !"
-        );
-        document.getElementById("bookTableForm").reset();
-      }
-    },
-  },
-
-  components: {
-    VueBasicAlert,
-  },
-};
-</script> -->
 
 <style scoped>
 .order-section {

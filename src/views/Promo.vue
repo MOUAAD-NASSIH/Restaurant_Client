@@ -189,17 +189,6 @@ function scrollToTop() {
   </div>
 </template>
 
-<!-- <script>
-export default {
-  name: "Promo",
-  methods: {
-    scrollToTop() {
-      window.scrollTo(0, 0);
-    },
-  },
-};
-</script> -->
-
 <style scoped>
 .promotions {
   padding: 2rem 9%;

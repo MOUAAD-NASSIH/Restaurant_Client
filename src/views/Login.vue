@@ -30,8 +30,17 @@ async function loginUser(data) {
     accessToken.value = res.data.AccessToken;
     console.log(accessToken.value);
     localStorage.setItem("token", accessToken.value);
+    if (accessToken.value != null) {
+      router.go(0);
+    } else {
+      errors.value.push("Incorrect email or password!");
+    }
   } catch (error) {
-    error.value.push("error : " + error.value);
+    if (error.response && error.response.status === 404) {
+      errors.value.push(error.response.data.message);
+    } else {
+      errors.value.push("Error: " + error.message);
+    }
   }
 }
 
@@ -50,16 +59,17 @@ async function handleSubmit() {
 
   if (errors.value.length == 0) {
     await loginUser(loginObj.value);
-    if (accessToken.value != null) {
-      // await getFoodsData();
-      // window.location.reload();
-      // router.go({ name: "home" });
-      router.go(0);
-    } else {
-      errors.value.push("Incorrect email or password!");
-    }
+    // if (accessToken.value != null) {
+    //   router.go(0);
+    // } else {
+    //   errors.value.push("Incorrect email or password!");
+    // }
   }
 }
+//   else if (getUser() == undefined) {
+//   console.log("user is undefined");
+//   errors.value.push("Incorrect email or password!");
+// }
 </script>
 
 <template>

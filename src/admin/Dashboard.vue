@@ -7,7 +7,7 @@ import { useRouter } from "vue-router";
 
 const router = useRouter();
 const store = useStore();
-const { allFoods, admin } = storeToRefs(store);
+const { admin } = storeToRefs(store);
 const { setAdmin } = store;
 const allBills = ref([]);
 const showOrderDetails = ref(false);
@@ -141,87 +141,6 @@ async function cancelBtn(id) {
     </div>
   </div>
 </template>
-
-<!-- <script>
-import axios from "axios";
-import { mapState, mapMutations } from "vuex";
-export default {
-  name: "Dashboard",
-  data() {
-    return {
-      availableStatus: [
-        "cancel",
-        "confirmed",
-        "preparing",
-        "checking",
-        "delivering",
-        "delivered",
-        "completed",
-      ],
-      allBills: [],
-      showOrderDetails: false,
-      sendId: undefined,
-      interval: "",
-    };
-  },
-  created() {
-    this.getAllBills();
-    if (!this.admin) {
-      this.$router.push("/");
-    }
-  },
-  mounted: function () {
-    this.autoUpdate();
-  },
-  beforeUnmount() {
-    clearInterval(this.interval);
-  },
-  computed: {
-    ...mapState(["allFoods", "admin"]),
-    filterBills: function () {
-      return this.allBills.filter(
-        (b) => b.bill_status < 6 && b.bill_status > 0
-      );
-    },
-  },
-  methods: {
-    ...mapMutations(["setAdmin"]),=
-    async getAllBills() {
-      this.allBills = (await axios.get("/billstatus")).data;
-    },
-    sendBillId: function (id) {
-      this.sendId = id;
-      this.showOrderDetails = !this.showOrderDetails;
-    },
-    closeView: function () {
-      this.showOrderDetails = !this.showOrderDetails;
-    },
-    handleLogout: function () {
-      this.setAdmin("");
-    },
-    async nextStatusBtn(id) {
-      await axios.put("/billstatus/" + id);
-      this.getAllBills();
-    },
-    async paidBtn(id) {
-      await axios.put("/billstatus/paid/" + id);
-      this.getAllBills();
-    },
-    async cancelBtn(id) {
-      await axios.put("/billstatus/cancel/" + id);
-      this.getAllBills();
-    },
-    autoUpdate: function () {
-      this.interval = setInterval(
-        function () {
-          this.getAllBills();
-        }.bind(this),
-        1000
-      );
-    },
-  },
-};
-</script> -->
 
 <style scoped>
 .admin-container {

@@ -119,73 +119,6 @@ async function addToCart() {
   </div>
 </template>
 
-<!-- <script>
-import axios from "axios";
-import { mapState } from "vuex";
-import VueBasicAlert from "vue-basic-alert";
-export default {
-  props: ["food"],
-  name: "QuickView",
-  data() {
-    return {
-      qty: 1,
-    };
-  },
-  computed: {
-    ...mapState(["allFoods", "user"]),
-    selectedFood: function () {
-      return this.allFoods.filter(
-        (f) => parseInt(f.food_id) == parseInt(this.food)
-      );
-    },
-  },
-  methods: {
-    onQtyChange: function (e) {
-      if (e.target.value < 1) {
-        e.target.value = 1;
-        this.qty = e.target.value;
-      } else {
-        this.qty = e.target.value;
-      }
-    },
-    async addToCart() {
-      let existItem = await axios.get(
-        "/cartItem/" + parseInt(this.user.user_id) + "/" + parseInt(this.food)
-      );
-      if (existItem.data.length == 1) {
-        let data = {
-          user_id: parseInt(this.user.user_id),
-          food_id: parseInt(this.food),
-          item_qty: parseInt(this.qty) + parseInt(existItem.data[0].item_qty),
-        };
-        await axios.put("/cartItem/", data);
-        this.$refs.alert.showAlert(
-          "success",
-          "Thank you!",
-          "Add To Cart Successfully !"
-        );
-      } else {
-        let data = {
-          user_id: parseInt(this.user.user_id),
-          food_id: parseInt(this.food),
-          item_qty: parseInt(this.qty),
-        };
-
-        await axios.post("/cartItem/", data);
-        this.$refs.alert.showAlert(
-          "success",
-          "Thank you!",
-          "Add To Cart Successfully !"
-        );
-      }
-    },
-  },
-  components: {
-    VueBasicAlert,
-  },
-};
-</script> -->
-
 <style scoped>
 .quick-view {
   position: fixed;
@@ -195,7 +128,6 @@ export default {
   bottom: 0;
   z-index: 99;
   background-color: rgba(0, 0, 0, 0.2);
-
   display: flex;
   align-items: center;
   justify-content: center;

@@ -12,16 +12,18 @@
         <img src="../assets/images/taco-chefcartoon.png" alt="" />
         <div class="about-content-text">
           <p>
-            Our restaurant QFood was founded by Quang (a 5 Michelin stars chef)
-            in 2002 in Vietnam. After that, thanks to the support of our
-            customers, our brand has been popularized globally in markets such
-            as Australia, USA, Canada, UK, France, Germany, Belgium, Russia,
-            China, Japan, Singapore, ... Mexican-style meals, the products that
-            we deliver to customers are always the best quality products.
+            Our restaurant QFood was founded by chef MOHA (a 2 Michelin stars
+            chef) in 2012 in Morocco. After that, thanks to the support of our
+            customers, our brand has been popularized locally in markets such as
+            Agadir, Marakech, Fes, Casablanca, Rabat, Dakhla, Tangier, Berkane,
+            Khouribga, Ifrane, Ouejda, ... Moroccan/Mexican-style meals, the
+            products that we deliver to customers are always the best quality
+            products.
           </p>
           <p>
-            Customers can eat at the restaurant to experience the Mexican
-            atmosphere or can order food to be delivered to their homes.
+            Customers can eat at the restaurant to experience the
+            Moroccan/Mexican atmosphere or can order food to be delivered to
+            their homes.
           </p>
         </div>
       </div>
@@ -49,12 +51,6 @@
     </div>
   </section>
 </template>
-
-<!-- <script>
-export default {
-  name: "About",
-};
-</script> -->
 
 <style scoped>
 @import url("https://fonts.googleapis.com/css2?family=Satisfy&display=swap");

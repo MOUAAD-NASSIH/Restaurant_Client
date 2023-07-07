@@ -80,69 +80,10 @@ onMounted(() => {
           </div>
         </div>
       </div>
-      <!-- <div class="price">
-        <p>Discount: ${{ billMatch.bill_discount }}</p>
-        <p>Delivery Fee: ${{ billMatch.bill_delivery }}</p>
-        <p>Total: ${{ billMatch.bill_total }}</p>
-      </div> -->
     </div>
   </div>
 </template>
 
-<!-- <script>
-import axios from "axios";
-import { mapState } from "vuex";
-export default {
-  props: ["bill"],
-  name: "OrderDetails",
-  data() {
-    return {
-      allFoodsInBill: [],
-      item_qty: [],
-
-      billMatch: undefined,
-    };
-  },
-  created() {
-    this.getAllFoods();
-    this.getBillStatus();
-  },
-  computed: {
-    ...mapState(["allFoods"]),
-
-    filterFoods: function () {
-      return this.allFoods.filter((f) => this.matchID(f, this.allFoodsInBill));
-    },
-  },
-  methods: {
-    matchID: function (food, cartArray) {
-      let temp = "";
-      cartArray.forEach((element) => {
-        if (parseInt(food.food_id) == element) {
-          temp = food;
-        }
-      });
-      return temp;
-    },
-    async getAllFoods() {
-      if (this.bill) {
-        let data = (await axios.get("/billdetails/" + this.bill)).data;
-        data.forEach((element) => {
-          this.allFoodsInBill.push(element.food_id);
-          this.item_qty.push(element.item_qty);
-        });
-      }
-    },
-    async getBillStatus() {
-      if (this.bill) {
-        this.billMatch = (
-          await axios.get("/billstatus/bill/" + this.bill)
-        ).data[0];
-      }
-    },
-  },
-};
-</script> -->
 
 <style scoped>
 .order-details {
@@ -153,7 +94,6 @@ export default {
   bottom: 0;
   z-index: 99;
   background-color: rgba(0, 0, 0, 0.2);
-
   display: flex;
   align-items: center;
   justify-content: center;

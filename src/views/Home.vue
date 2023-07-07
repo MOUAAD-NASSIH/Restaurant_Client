@@ -9,10 +9,10 @@ function scrollToTop() {
     <div class="home-main">
       <div class="content">
         <span>welcome foodies</span>
-        <h3>Original taste from Mexico 😋</h3>
+        <h3>Original taste 😋</h3>
         <p>
           We guarantee to use fresh food with the best quality. Customers will
-          enjoy Mexican cuisine with explosive, sophisticated flavors.
+          enjoy Moroccan/Mexican cuisine with explosive, sophisticated flavors.
         </p>
         <router-link @click="scrollToTop()" to="/menu" class="btn"
           >order now</router-link
@@ -102,7 +102,7 @@ function scrollToTop() {
         <h3 class="title">what's make our food delicious!</h3>
         <p>
           Food to customers is always guaranteed of the best quality. Our dishes
-          are made by chef Quang (a 5 Michelin stars chef), promising to bring
+          are made by chef MOHA (a 2 Michelin stars chef), promising to bring
           explosive, delicate, impressive flavors. Our delivery service is very
           professional, customers can enjoy the same quality at the restaurant
         </p>
@@ -132,17 +132,6 @@ function scrollToTop() {
     </div>
   </div>
 </template>
-
-<!-- <script>
-export default {
-  name: "Home",
-  methods: {
-    scrollToTop() {
-      window.scrollTo(0, 0);
-    },
-  },
-};
-</script> -->
 
 <style scoped>
 .home-main,

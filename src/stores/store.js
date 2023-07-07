@@ -43,31 +43,3 @@ export const useStore = defineStore("store", () => {
     setAdmin,
   };
 });
-// export const useStore = defineStore("store", {
-//   state: () => ({
-//     allFoods: [],
-//     user: undefined,
-//     admin: undefined,
-//   }),
-//   getters: {
-//     getAllFoods: (state) => state.allFoods,
-//     getUser: (state) => state.user,
-//     getAdmin: (state) => state.admin,
-//   },
-//   actions: {
-//     async getFoodsData() {
-//       try {
-//         const response = await AxiosInstance.get("/foods");
-//         this.allFoods = response.data;
-//       } catch (error) {
-//         console.log(error);
-//       }
-//     },
-//     setUser(payload) {
-//       this.user = payload;
-//     },
-//     setAdmin(payload) {
-//       this.admin = payload;
-//     },
-//   },
-// });

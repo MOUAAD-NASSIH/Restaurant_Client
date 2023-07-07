@@ -37,12 +37,6 @@ const vNone = {
   </div>
 </template>
 
-<!-- <script>
-export default {
-  name: "Thank",
-};
-</script> -->
-
 <style scoped>
 @import url("https://fonts.googleapis.com/css?family=Luckiest+Guy");
 

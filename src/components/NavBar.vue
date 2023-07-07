@@ -99,48 +99,6 @@ async function handleLogout() {
   </div>
 </template>
 
-<!-- <script>
-import { mapState, mapMutations } from "vuex";
-export default {
-  name: "NavBar",
-  computed: {
-    ...mapState(["user"]),
-  },
-  mounted() {
-    window.addEventListener("scroll", this.handleScroll);
-  },
-  unmounted() {
-    window.removeEventListener("scroll", this.handleScroll);
-  },
-  methods: {
-    ...mapMutations(["setUser"]),
-    scrollToTop() {
-      window.scrollTo(0, 0);
-    },
-    showNav: function () {
-      let navbar = document.querySelector(".header .navbar");
-      navbar.classList.toggle("active");
-    },
-    showLog: function () {
-      let mq = window.matchMedia("(max-width: 768px)");
-      if (mq.matches) {
-        let log = document.querySelector(".drop-down-select");
-        log.classList.toggle("active");
-      }
-    },
-    handleScroll: function () {
-      let navbar = document.querySelector(".header .navbar");
-      navbar.classList.remove("active");
-      let log = document.querySelector(".drop-down-select");
-      log.classList.remove("active");
-    },
-    handleLogout: function () {
-      this.setUser("");
-    },
-  },
-};
-</script> -->
-
 <style scoped>
 .header {
   position: sticky;
