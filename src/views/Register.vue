@@ -111,13 +111,13 @@ function checkForm() {
   if (!registerObj.value.phone) {
     errorObj.value.phoneErr.push("Entering phone number is required");
   } else {
-    if (!registerObj.value.phone.startsWith("+212")) {
+    if (!/^0[567]/.test(registerObj.value.phone)) {
       errorObj.value.phoneErr.push(
-        "Phone numbers must start with +212, example: +212-xxxxxxxxx"
+        "Phone numbers must start with 05, 06, or 07"
       );
     }
-    if (!/[0-9]{11}/.test(registerObj.value.phone)) {
-      errorObj.value.phoneErr.push("Phone numbers can only contain numbers");
+    if (registerObj.value.phone.length != 10) {
+      errorObj.value.phoneErr.push("Phone numbers must have exactly 10 digits");
     }
   }
   // Birth validate

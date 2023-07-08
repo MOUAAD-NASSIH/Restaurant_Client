@@ -206,9 +206,6 @@ async function handleSubmit(e) {
     } else {
       billId = parseInt(billId.bill_id) + 1;
     }
-    cartItem.value.forEach((foodId, index) => {
-      sendBillDetails(billId, foodId, itemQuantity.value[index]);
-    });
     const now = new Date();
     let day = ("0" + now.getDate()).slice(-2);
     let month = ("0" + (now.getMonth() + 1)).slice(-2);
@@ -230,6 +227,10 @@ async function handleSubmit(e) {
       bill_status: 1,
     };
     AxiosInstance.post("/billstatus", billStatus);
+    cartItem.value.forEach((foodId, index) => {
+      sendBillDetails(billId, foodId, itemQuantity.value[index]);
+    });
+
     AxiosInstance.delete("/cartItem/" + user.value.user_id);
     cartItem.value = [];
     itemQuantity.value = [];
