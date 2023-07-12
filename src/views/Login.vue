@@ -36,11 +36,14 @@ async function loginUser(data) {
       errors.value.push("Incorrect email or password!");
     }
   } catch (error) {
-    if (error.response && error.response.status === 404) {
+    if (error) {
       errors.value.push(error.response.data.message);
-    } else {
-      errors.value.push("Error: " + error.message);
     }
+    // if (error.response && error.response.status === 404) {
+    //   errors.value.push(error.response.data.message);
+    // } else {
+    //   errors.value.push("Error: " + error.message);
+    // }
   }
 }
 
