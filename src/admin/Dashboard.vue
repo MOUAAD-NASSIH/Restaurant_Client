@@ -29,7 +29,7 @@ onMounted(() => {
   autoUpdate();
   getAllBills();
   if (!admin.value) {
-    router.push("/");
+    router.push("/admin");
   }
 });
 onBeforeUnmount(() => {
